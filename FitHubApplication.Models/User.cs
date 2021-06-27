@@ -1,9 +1,9 @@
-﻿namespace FitHubApplication.Models
-{
-    public class User
-    {
+﻿using Microsoft.AspNetCore.Identity;
 
-        public int Id { get; set; }
+namespace FitHubApplication.Models
+{
+    public class User : IdentityUser
+    {
         public string Name { get; set; }
         public string LastName { get; set; }
 

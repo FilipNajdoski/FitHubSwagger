@@ -26,7 +26,7 @@ namespace FitHubApplication.Controllers
         /// <param name="id"> this is the specified userID</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUser(string id)
         {
 
             User user = await userService.GetById(id);
@@ -100,7 +100,7 @@ namespace FitHubApplication.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<ActionResult<string>> DeleteUser(int id)
+        public async Task<ActionResult<string>> DeleteUser(string id)
         {
 
             await userService.DeleteAsync(id);

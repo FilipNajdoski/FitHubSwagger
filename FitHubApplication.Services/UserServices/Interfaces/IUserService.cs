@@ -10,13 +10,13 @@ namespace FitHubApplication.Services
 
         Task<List<User>> GetByName(string name);
 
-        Task<User> GetById(int id);
+        Task<User> GetById(string id);
 
         Task CreateAsync(User user);
 
         Task UpdateAsync(User user);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
 
     }
 }

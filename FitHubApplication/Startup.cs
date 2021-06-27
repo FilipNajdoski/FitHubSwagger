@@ -4,6 +4,7 @@ using FitHubApplication.Repositories;
 using FitHubApplication.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,7 +57,19 @@ namespace FitHubApplication
 
             });
 
+
+
             services.AddDbContext<FitHubDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FitHubDbContext")));
+
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<FitHubDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = true;
+            });
 
             services.AddTransient<IUserRepository, UserRepository>();
 

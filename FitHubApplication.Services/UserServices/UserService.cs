@@ -25,7 +25,7 @@ namespace FitHubApplication.Services
             return await userRepository.GetWhere(x => x.Name.Contains(name)).ToListAsync();
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<User> GetById(string id)
         {
             return await userRepository.GetFirstWhere(x => x.Id.Equals(id));
         }
@@ -40,7 +40,7 @@ namespace FitHubApplication.Services
             await userRepository.Update(user);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             User user = new User
             {
