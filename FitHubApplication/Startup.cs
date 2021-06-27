@@ -1,5 +1,6 @@
 using FitHubApplication.Extensions;
 using FitHubApplication.Models;
+using FitHubApplication.Models.Utilities;
 using FitHubApplication.Repositories;
 using FitHubApplication.Services;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,10 @@ namespace FitHubApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            JwtSettings jwtSettings = new JwtSettings();
+            Configuration.GetSection("JwtBearer").Bind(jwtSettings);
+
             services.AddCors(options =>
             {
                 string[] corsOrigins = Configuration["CorsOrigins"].Split(",");
@@ -70,6 +75,8 @@ namespace FitHubApplication
                 options.Password.RequireDigit = true;
                 options.Password.RequireNonAlphanumeric = true;
             });
+
+            services.AddSingleton<JwtSettings>(jwtSettings);
 
             services.AddTransient<IUserRepository, UserRepository>();
 
