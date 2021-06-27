@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitHubApplication", "FitHubApplication\FitHubApplication.csproj", "{02526D0A-6C05-4ACD-9437-970ED43BB793}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1D49807-3C3A-460C-8618-032B9F709CEF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitHubApplication.Services", "FitHubApplication.Services\FitHubApplication.Services.csproj", "{7F9ED5F5-B63F-499C-A8E5-55228CD615DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitHubApplication.Repositories", "FitHubApplication.Repositories\FitHubApplication.Repositories.csproj", "{F516E8FA-AF6B-438C-9BEC-F90BC579E3C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitHubApplication.Models", "FitHubApplication.Models\FitHubApplication.Models.csproj", "{B2F1C3AA-91CD-48B1-AE0C-6FE7BEEDFF9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02526D0A-6C05-4ACD-9437-970ED43BB793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02526D0A-6C05-4ACD-9437-970ED43BB793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02526D0A-6C05-4ACD-9437-970ED43BB793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02526D0A-6C05-4ACD-9437-970ED43BB793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F9ED5F5-B63F-499C-A8E5-55228CD615DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F9ED5F5-B63F-499C-A8E5-55228CD615DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F9ED5F5-B63F-499C-A8E5-55228CD615DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F9ED5F5-B63F-499C-A8E5-55228CD615DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F516E8FA-AF6B-438C-9BEC-F90BC579E3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F516E8FA-AF6B-438C-9BEC-F90BC579E3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F516E8FA-AF6B-438C-9BEC-F90BC579E3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F516E8FA-AF6B-438C-9BEC-F90BC579E3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F1C3AA-91CD-48B1-AE0C-6FE7BEEDFF9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F1C3AA-91CD-48B1-AE0C-6FE7BEEDFF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F1C3AA-91CD-48B1-AE0C-6FE7BEEDFF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F1C3AA-91CD-48B1-AE0C-6FE7BEEDFF9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {244ADBA3-D384-4BBB-90ED-168C21D075FF}
+	EndGlobalSection
+EndGlobal
