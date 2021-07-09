@@ -1,5 +1,6 @@
 ﻿using FitHubApplication.Models;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FitHubApplication.Services
@@ -18,5 +19,8 @@ namespace FitHubApplication.Services
 
         Task DeleteAsync(string id);
 
+        Task<User> Get(string usernameOrEmail);
+
+        Task<IList<Claim>> GetClaimsAsync(User user);
     }
 }

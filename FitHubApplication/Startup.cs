@@ -1,5 +1,6 @@
 using FitHubApplication.Extensions;
 using FitHubApplication.Models;
+using FitHubApplication.Models.Constants;
 using FitHubApplication.Models.Utilities;
 using FitHubApplication.Repositories;
 using FitHubApplication.Services;
@@ -31,13 +32,13 @@ namespace FitHubApplication
         {
 
             JwtSettings jwtSettings = new JwtSettings();
-            Configuration.GetSection("JwtBearer").Bind(jwtSettings);
+            Configuration.GetSection(ApplicationConsts.ConfigConsts.JwtBearer).Bind(jwtSettings);
 
             services.AddCors(options =>
             {
-                string[] corsOrigins = Configuration["CorsOrigins"].Split(",");
+                string[] corsOrigins = Configuration[ApplicationConsts.CorsConsts.CorsOrigins].Split(ApplicationConsts.CorsConsts.Comma);
 
-                options.AddPolicy("CorsPolicy",
+                options.AddPolicy(ApplicationConsts.CorsConsts.CorsPolicy,
                     builder =>
                     {
                         builder.WithOrigins(corsOrigins)
@@ -48,12 +49,12 @@ namespace FitHubApplication
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc(ApplicationConsts.SwaggerConsts.ApiVersion, new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "FitHubAPI"
+                    Version = ApplicationConsts.SwaggerConsts.ApiVersion,
+                    Title = ApplicationConsts.SwaggerConsts.FitHubAPI
                 });
-                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}{ApplicationConsts.FileExtensionConsts.XmlExtension}";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
                
@@ -64,7 +65,7 @@ namespace FitHubApplication
 
 
 
-            services.AddDbContext<FitHubDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FitHubDbContext")));
+            services.AddDbContext<FitHubDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ApplicationConsts.ConfigConsts.FitHubDbContext)));
 
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<FitHubDbContext>();
 
@@ -82,6 +83,8 @@ namespace FitHubApplication
 
             services.AddTransient<IUserService, UserService>();
 
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+
             services.AddControllers();
         }
 
@@ -98,7 +101,7 @@ namespace FitHubApplication
 
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("v1/swagger.json", "FitHub Docs");
+                options.SwaggerEndpoint(ApplicationConsts.SwaggerConsts.SwaggerJsonPath, ApplicationConsts.SwaggerConsts.SwaggerDocs);
             });
 
             app.ConfigureExceptionHandler();

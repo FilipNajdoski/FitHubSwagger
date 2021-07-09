@@ -1,15 +1,15 @@
 ﻿using FitHubApplication.Models;
+using FitHubApplication.Models.Constants;
 using FitHubApplication.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FitHubApplication.Controllers
 {
-    [EnableCors("CorsPolicy")]
-    [Route("api/[controller]/[action]")]
+    [EnableCors(ApplicationConsts.CorsConsts.CorsPolicy)]
+    [Route(ApplicationConsts.ControllerConsts.DefaultControllerRoute)]
     [ApiController]
     public class UserController : ControllerBase
     {

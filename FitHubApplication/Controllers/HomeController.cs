@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using FitHubApplication.Models.Constants;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitHubApplication.Controllers
 {
-    [EnableCors("CorsPolicy")]
+    [EnableCors(ApplicationConsts.CorsConsts.CorsPolicy)]
     [ApiExplorerSettings(IgnoreApi = true)]
-    [Route("api/[controller]")]
+    [Route(ApplicationConsts.ControllerConsts.HomeControllerRoute)]
     [ApiController]
     public class HomeController : ControllerBase
     {
@@ -17,7 +18,7 @@ namespace FitHubApplication.Controllers
         public ActionResult Home()
         {
 
-            return new RedirectResult("~/swagger");
+            return new RedirectResult(ApplicationConsts.SwaggerConsts.SwaggerRedirection);
         }
     }
 }

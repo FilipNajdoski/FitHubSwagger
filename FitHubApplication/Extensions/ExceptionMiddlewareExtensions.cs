@@ -1,5 +1,6 @@
 ﻿using FitHubApplication.Logger;
 using FitHubApplication.Models;
+using FitHubApplication.Models.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -17,25 +18,26 @@ namespace FitHubApplication.Extensions
                 appError.Run(async context =>
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    context.Response.ContentType = "application/json";
+                    context.Response.ContentType = ApplicationConsts.MimeTypeConsts.ApplicationJson;
 
                     IExceptionHandlerFeature contextFeature = context.Features.Get<IExceptionHandlerFeature>();
 
-                    if (contextFeature != null)
+                    if (!(contextFeature is null))
                     {
-                        string path = $@"C:\FitHubLogs\";
-                        string fileName = "Logs.txt";
+                        string path = ApplicationConsts.LogConsts.FithubLogsPath;
+                        string fileName = ApplicationConsts.LogConsts.LogsFile;
                         string filePath = Path.Combine(path, fileName);
 
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
-
                         }
+
                         if (!File.Exists(filePath))
                         {
                             File.Create(filePath);
                         }
+
                         LogWriter.WriteLog(contextFeature.Error, filePath);
 
                         await context.Response.WriteAsync(new ErrorDetails()

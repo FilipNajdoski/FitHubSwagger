@@ -1,7 +1,11 @@
 ﻿using FitHubApplication.Models;
+using FitHubApplication.Models.Constants;
 using FitHubApplication.Repositories;
+using FitHubApplication.Services.Exceptions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FitHubApplication.Services
@@ -9,10 +13,17 @@ namespace FitHubApplication.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
+        private readonly UserManager<User> userManager;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, UserManager<User> userManager)
         {
             this.userRepository = userRepository;
+            this.userManager = userManager;
+        }
+
+        public async Task<IList<Claim>> GetClaimsAsync(User user)
+        {
+            return await userManager.GetClaimsAsync(user);
         }
 
         public async Task<List<User>> GetAllAsync()
@@ -30,9 +41,18 @@ namespace FitHubApplication.Services
             return await userRepository.GetFirstWhere(x => x.Id.Equals(id));
         }
 
+        public async Task<User> Get(string usernameOrEmail)
+        {
+            User user = await userRepository.GetFirstWhere(x => x.Email.Equals(usernameOrEmail) || x.UserName.Equals(usernameOrEmail));
+
+            ExceptionHelper.NullCheck<User>(user, ApplicationConsts.ExceptionMessages.UserIsNull);
+
+            return user;
+        }
+
         public async Task CreateAsync(User user)
         {
-            await userRepository.Create(user);
+            await userManager.CreateAsync(user, user.PasswordHash);
         }
 
         public async Task UpdateAsync(User user)

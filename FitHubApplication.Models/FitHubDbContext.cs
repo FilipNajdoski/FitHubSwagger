@@ -7,5 +7,9 @@ namespace FitHubApplication.Models
     {
         public FitHubDbContext( DbContextOptions<FitHubDbContext> options) : base (options){}
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }
