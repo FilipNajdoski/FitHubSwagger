@@ -1,4 +1,5 @@
 using FitHubApplication.Extensions;
+using FitHubApplication.Helpers;
 using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
 using FitHubApplication.Models.Utilities;
@@ -57,15 +58,10 @@ namespace FitHubApplication
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}{ApplicationConsts.FileExtensionConsts.XmlExtension}";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-               
-
                 c.IncludeXmlComments(xmlPath);
-
             });
 
-
-
-            services.AddDbContext<FitHubDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ApplicationConsts.ConfigConsts.FitHubDbContext)));
+            services.AddDbContext<FitHubDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ApplicationConsts.ConfigConsts.FitHubDbContext)), ServiceLifetime.Transient);
 
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<FitHubDbContext>();
 
@@ -112,7 +108,11 @@ namespace FitHubApplication
 
             app.UseCors();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

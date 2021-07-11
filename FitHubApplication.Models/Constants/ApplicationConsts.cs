@@ -15,6 +15,15 @@ namespace FitHubApplication.Models.Constants
             public const string JwtAudience = "JwtBearer:Audience";
 
             public const string FitHubDbContext = "FitHubDbContext";
+
+            public const string UnauthorizedRequest = "Unauthorized";
+        }
+
+        public static class ContextConsts 
+        {
+            public const string User = "User";
+
+            public const string Authorization = "Authorization";
         }
 
         public static class FileExtensionConsts

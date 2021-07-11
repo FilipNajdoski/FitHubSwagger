@@ -1,4 +1,5 @@
-﻿using FitHubApplication.Models;
+﻿using FitHubApplication.Helpers;
+using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
 using FitHubApplication.Services;
 using Microsoft.AspNetCore.Cors;
@@ -40,11 +41,11 @@ namespace FitHubApplication.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<User>>> GetAll()
         {
 
             List<User> user = await userService.GetAllAsync();
-
 
             return Ok(user);
         }
