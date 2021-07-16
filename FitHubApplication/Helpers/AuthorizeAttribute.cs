@@ -1,5 +1,4 @@
-﻿using FitHubApplication.Models;
-using FitHubApplication.Models.Constants;
+﻿using FitHubApplication.Models.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -16,7 +15,7 @@ namespace FitHubApplication.Helpers
 
             if (user is null)
             {
-                context.Result = new JsonResult(new { message =  ApplicationConsts.ConfigConsts.UnauthorizedRequest }) { StatusCode = StatusCodes.Status401Unauthorized };
+                context.Result = new JsonResult(new { Message =  ApplicationConsts.ConfigConsts.UnauthorizedRequest }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
         }
     }

@@ -19,5 +19,13 @@ namespace FitHubApplication.Services.Exceptions
                 throw new Exception(message);
             }
         }
+
+        public static void StringIsEmpty(string str, string message)
+        {
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                throw new Exception(message);
+            }
+        }
     }
 }

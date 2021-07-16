@@ -4,14 +4,16 @@ using FitHubApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitHubApplication.Models.Migrations
 {
     [DbContext(typeof(FitHubDbContext))]
-    partial class FitHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210711094719_ExtendedUser")]
+    partial class ExtendedUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,106 +21,7 @@ namespace FitHubApplication.Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Event", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Exercise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Coeficient")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ExerciseImageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExerciseImageId");
-
-                    b.ToTable("Exercises");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Group", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CoachId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CoachId");
-
-                    b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.UploadedFiles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FileExtension")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MimeType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OriginalFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UploadedFiles");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.User", b =>
+            modelBuilder.Entity("FitHubApplication.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -133,9 +36,6 @@ namespace FitHubApplication.Models.Migrations
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -144,9 +44,6 @@ namespace FitHubApplication.Models.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Height")
@@ -181,9 +78,6 @@ namespace FitHubApplication.Models.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProfilePictureId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -202,8 +96,6 @@ namespace FitHubApplication.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -212,34 +104,7 @@ namespace FitHubApplication.Models.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("ProfilePictureId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.UserExercise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PersonalRecord")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExerciseId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserExercises");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -373,53 +238,6 @@ namespace FitHubApplication.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Event", b =>
-                {
-                    b.HasOne("FitHubApplication.Models.Entities.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Exercise", b =>
-                {
-                    b.HasOne("FitHubApplication.Models.Entities.UploadedFiles", "ExerciseImage")
-                        .WithMany()
-                        .HasForeignKey("ExerciseImageId");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.Group", b =>
-                {
-                    b.HasOne("FitHubApplication.Models.Entities.User", "Coach")
-                        .WithMany()
-                        .HasForeignKey("CoachId");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.User", b =>
-                {
-                    b.HasOne("FitHubApplication.Models.Entities.Group", null)
-                        .WithMany("Trainees")
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("FitHubApplication.Models.Entities.UploadedFiles", "ProfilePicture")
-                        .WithMany()
-                        .HasForeignKey("ProfilePictureId");
-                });
-
-            modelBuilder.Entity("FitHubApplication.Models.Entities.UserExercise", b =>
-                {
-                    b.HasOne("FitHubApplication.Models.Entities.Exercise", "Exercise")
-                        .WithMany("UserExercises")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FitHubApplication.Models.Entities.User", "User")
-                        .WithMany("UserExercises")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -431,7 +249,7 @@ namespace FitHubApplication.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("FitHubApplication.Models.Entities.User", null)
+                    b.HasOne("FitHubApplication.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -440,7 +258,7 @@ namespace FitHubApplication.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("FitHubApplication.Models.Entities.User", null)
+                    b.HasOne("FitHubApplication.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -455,7 +273,7 @@ namespace FitHubApplication.Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FitHubApplication.Models.Entities.User", null)
+                    b.HasOne("FitHubApplication.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +282,7 @@ namespace FitHubApplication.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("FitHubApplication.Models.Entities.User", null)
+                    b.HasOne("FitHubApplication.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

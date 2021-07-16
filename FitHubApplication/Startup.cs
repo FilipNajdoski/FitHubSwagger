@@ -2,6 +2,7 @@ using FitHubApplication.Extensions;
 using FitHubApplication.Helpers;
 using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
+using FitHubApplication.Models.Entities;
 using FitHubApplication.Models.Utilities;
 using FitHubApplication.Repositories;
 using FitHubApplication.Services;

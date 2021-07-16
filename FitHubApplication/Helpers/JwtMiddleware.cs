@@ -28,7 +28,9 @@ namespace FitHubApplication.Helpers
             string token = context.Request.Headers[ApplicationConsts.ContextConsts.Authorization].FirstOrDefault()?.Split(" ").Last();
 
             if (!(token is null))
+            {
                 AttachUserToContext(context, userService, token);
+            }
 
             await _next(context);
         }

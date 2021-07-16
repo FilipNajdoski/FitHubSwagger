@@ -1,5 +1,6 @@
 ﻿using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
+using FitHubApplication.Models.Entities;
 using FitHubApplication.Models.Utilities;
 using FitHubApplication.Services;
 using FitHubApplication.Services.Exceptions;
@@ -56,7 +57,6 @@ namespace FitHubApplication.Controllers
             };
 
             return Ok(authenticationModel);
-
         }
 
         private void CreateJwtToken(List<Claim> claims,  out JwtSecurityToken jwtSecurityToken, out string accessToken)

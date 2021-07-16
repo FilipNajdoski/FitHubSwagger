@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210716211644_AddedExcercisesGroupsAndEvents.cs" />
+    <Compile Remove="Migrations\20210716211644_AddedExcercisesGroupsAndEvents.Designer.cs" />
+    <Compile Remove="Migrations\20210716212256_AddedExcercisesGroupsAndEvents.cs" />
+    <Compile Remove="Migrations\20210716212256_AddedExcercisesGroupsAndEvents.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.16" />

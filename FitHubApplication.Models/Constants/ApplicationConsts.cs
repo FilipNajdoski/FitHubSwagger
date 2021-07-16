@@ -17,6 +17,8 @@ namespace FitHubApplication.Models.Constants
             public const string FitHubDbContext = "FitHubDbContext";
 
             public const string UnauthorizedRequest = "Unauthorized";
+
+            public const string SqlDecimalType = "decimal(18,4)";
         }
 
         public static class ContextConsts 

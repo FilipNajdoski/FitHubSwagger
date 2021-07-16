@@ -1,4 +1,5 @@
 ﻿using FitHubApplication.Models;
+using FitHubApplication.Models.Entities;
 
 namespace FitHubApplication.Services.Mapper
 {

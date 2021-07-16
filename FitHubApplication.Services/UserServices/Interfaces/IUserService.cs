@@ -1,4 +1,4 @@
-﻿using FitHubApplication.Models;
+﻿using FitHubApplication.Models.Entities;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;

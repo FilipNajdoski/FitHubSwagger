@@ -1,5 +1,5 @@
-﻿using FitHubApplication.Models;
-using FitHubApplication.Models.Constants;
+﻿using FitHubApplication.Models.Constants;
+using FitHubApplication.Models.Entities;
 using FitHubApplication.Repositories;
 using FitHubApplication.Services.Exceptions;
 using Microsoft.AspNetCore.Identity;

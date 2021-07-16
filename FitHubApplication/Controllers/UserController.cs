@@ -1,6 +1,7 @@
 ﻿using FitHubApplication.Helpers;
 using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
+using FitHubApplication.Models.Entities;
 using FitHubApplication.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
