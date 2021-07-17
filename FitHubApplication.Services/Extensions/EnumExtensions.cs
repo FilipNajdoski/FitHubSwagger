@@ -15,5 +15,24 @@ namespace FitHubApplication.Services.Extensions
                             .GetCustomAttribute<DisplayAttribute>()
                             .GetName();
         }
+
+        public static T ToEnum<T>(this string value)
+        {
+            try
+            {
+                T res = (T)Enum.Parse(typeof(T), value);
+
+                if (!Enum.IsDefined(typeof(T), res))
+                {
+                    return default;
+                }
+
+                return res;
+            }
+            catch
+            {
+                return default;
+            }
+        }
     }
 }

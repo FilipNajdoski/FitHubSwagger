@@ -1,6 +1,7 @@
 ﻿using FitHubApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -31,9 +32,15 @@ namespace FitHubApplication.Repositories
             return await Context.Set<T>().FirstOrDefaultAsync(predicate);
         }
 
+        public async Task CreateMultiple(List<T> entities)
+        {
+            await Context.Set<T>().AddRangeAsync(entities);
+            await Context.SaveChangesAsync();
+        }
+
         public async Task Create(T entity)
         {
-            Context.Set<T>().Add(entity);
+            await Context.Set<T>().AddAsync(entity);
             await Context.SaveChangesAsync();
         }
 
@@ -43,9 +50,21 @@ namespace FitHubApplication.Repositories
             await Context.SaveChangesAsync();
         }
 
+        public async Task UpdateMultiple(List<T> entities)
+        {
+            Context.Set<T>().UpdateRange(entities);
+            await Context.SaveChangesAsync();
+        }
+
         public async Task Delete(T entity)
         {
             Context.Set<T>().Remove(entity);
+            await Context.SaveChangesAsync();
+        }
+
+        public async Task DeleteMultiple(List<T> entities)
+        {
+            Context.Set<T>().RemoveRange(entities);
             await Context.SaveChangesAsync();
         }
     }

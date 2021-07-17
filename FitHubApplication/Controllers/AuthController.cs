@@ -53,7 +53,7 @@ namespace FitHubApplication.Controllers
             {
                 AccessToken = accessToken,
                 ExpirationTime = jwtSecurityToken.ValidTo,
-                EncryptedAccessToken = accessToken,
+                EncryptedAccessToken = accessToken,//encrypt this to put it as cookie
             };
 
             return Ok(authenticationModel);

@@ -6,14 +6,14 @@ namespace FitHubApplication.Models.AppEnums
     {
         public enum Gender
         {
+            [Display(Name = "Other")]
+            Other,
+
             [Display(Name = "Male")]
             Male,
 
             [Display(Name = "Female")]
             Female,
-
-            [Display(Name = "Other")]
-            Other
         }
 
         public enum Level

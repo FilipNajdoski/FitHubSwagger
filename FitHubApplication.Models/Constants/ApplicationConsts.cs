@@ -79,6 +79,8 @@ namespace FitHubApplication.Models.Constants
 
         public static class ExceptionMessages
         {
+            public const string SearchIsNull = "Search input is empty";
+
             public const string UserIsNull = "User not found. Maybe it`s deleted";
 
             public const string LoginFailed = "Login Failed!";
