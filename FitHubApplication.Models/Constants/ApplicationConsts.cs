@@ -21,6 +21,17 @@ namespace FitHubApplication.Models.Constants
             public const string SqlDecimalType = "decimal(18,4)";
         }
 
+        public static class UploadFileConsts
+        {
+            public const string Underscore = "_";
+
+            public const string FitHubFileSystemPath = "FitHubFileSystemPath";
+
+            public const string FileRequesForm = "file";
+
+            public const string Slash = "/";
+        }
+
         public static class ContextConsts 
         {
             public const string User = "User";
@@ -53,6 +64,8 @@ namespace FitHubApplication.Models.Constants
             public const string HomeControllerRoute = "api/[controller]";
 
             public const string DefaultControllerRoute = "api/[controller]/[action]";
+
+            public const string MultipartFormData = "multipart/form-data";
         }
 
         public static class CorsConsts
@@ -84,6 +97,8 @@ namespace FitHubApplication.Models.Constants
             public const string UserIsNull = "User not found. Maybe it`s deleted";
 
             public const string LoginFailed = "Login Failed!";
+
+            public const string StingIsEmpty = "String is empty";
         }
 
         /// <summary>

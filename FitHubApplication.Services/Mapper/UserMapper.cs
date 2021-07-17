@@ -6,6 +6,12 @@ namespace FitHubApplication.Services.Mapper
 {
     public static class UserMapper
     {
+
+        /// <summary>
+        /// Converts a <see cref="User"/> to <see cref="UserDto"/>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static UserDto EntityToDto(this User user)
         {
             return new UserDto
@@ -25,6 +31,11 @@ namespace FitHubApplication.Services.Mapper
             };
         }
 
+        /// <summary>
+        /// Converts a <see cref="UserDto"/> to <see cref="User"/>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static User DtoToEntity(this UserDto user)
         {
             return new User
@@ -43,6 +54,11 @@ namespace FitHubApplication.Services.Mapper
             };
         }
 
+        /// <summary>
+        /// Converts a <see cref="CreateUserDto"/> to <see cref="User"/>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static User CreateDtoToEntity(this CreateUserDto user)
         {
             return new User

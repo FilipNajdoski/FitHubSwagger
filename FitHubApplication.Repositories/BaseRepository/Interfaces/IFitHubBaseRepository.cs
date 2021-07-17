@@ -14,7 +14,7 @@ namespace FitHubApplication.Repositories
 
         Task<T> GetFirstWhere(Expression<Func<T, bool>> predicate);
 
-        Task Create(T entity);
+        Task<T> Create(T entity);
 
         Task CreateMultiple(List<T> entities);
 

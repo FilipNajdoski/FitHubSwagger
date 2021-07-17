@@ -31,21 +31,21 @@ namespace FitHubApplication.Controllers
         [Authorize]
         public async Task<ActionResult<UserDto>> GetUser(string id)
         {
+            ExceptionHelper.StringIsEmpty(id, ApplicationConsts.ExceptionMessages.StingIsEmpty);
 
             UserDto user = await userService.GetById(id);
-
 
             return Ok(user);
         }
 
         /// <summary>
-        /// This will return a list of users with a given Name
+        /// Searches a user for all given inputs
         /// </summary>
         /// <param name="searchInput"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<List<UserDto>>> GetByName(UserSearchInput searchInput)
+        public async Task<ActionResult<List<UserDto>>> Search(UserSearchInput searchInput)
         {
             ExceptionHelper.NullCheck<UserSearchInput>(searchInput, ApplicationConsts.ExceptionMessages.SearchIsNull);
 
@@ -55,7 +55,7 @@ namespace FitHubApplication.Controllers
         }
 
         /// <summary>
-        /// This will create a new user
+        /// Creates a user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -64,14 +64,15 @@ namespace FitHubApplication.Controllers
         public async Task<ActionResult<string>> CreateUser(RegisetUserViewModel user)
         {
 
-            await userService.CreateAsync(user.User, user.PlainPassword);
+            ExceptionHelper.NullCheck<RegisetUserViewModel>(user, ApplicationConsts.ExceptionMessages.UserIsNull);
 
+            await userService.CreateAsync(user.User, user.PlainPassword);
 
             return Ok("user successfully created");
         }
 
         /// <summary>
-        /// This will update the desired user
+        /// Updates a user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -79,15 +80,15 @@ namespace FitHubApplication.Controllers
         [Authorize]
         public async Task<ActionResult<string>> UpdateUser(UserDto user)
         {
+            ExceptionHelper.NullCheck<UserDto>(user, ApplicationConsts.ExceptionMessages.UserIsNull);
 
             await userService.UpdateAsync(user);
-
 
             return Ok("user successfully updated");
         }
         
         /// <summary>
-        /// This will delete the user with given ID
+        /// Deletes a user by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -95,9 +96,9 @@ namespace FitHubApplication.Controllers
         [Authorize]
         public async Task<ActionResult<string>> DeleteUser(string id)
         {
+            ExceptionHelper.StringIsEmpty(id, ApplicationConsts.ExceptionMessages.StingIsEmpty);
 
             await userService.DeleteAsync(id);
-
 
             return Ok("user successfully deleted");
         }

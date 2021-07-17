@@ -78,7 +78,7 @@ namespace FitHubApplication.Services
                 Id = id
             };
 
-            await userRepository.Delete(user);
+            await userManager.DeleteAsync(user);
         }
     }
 }

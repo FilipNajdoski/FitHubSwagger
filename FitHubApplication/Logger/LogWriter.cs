@@ -6,6 +6,11 @@ namespace FitHubApplication.Logger
 {
     public class LogWriter
     {
+        /// <summary>
+        /// Writes <see cref="Exception"/> in specified file path
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="filePath"></param>
         internal static void WriteLog(Exception ex, string filePath)
         {
             using StreamWriter writer = new StreamWriter(filePath, true);

@@ -7,6 +7,11 @@ namespace FitHubApplication.Services.Extensions
 {
     public static class EnumExtensions
     {
+        /// <summary>
+        /// Converts enum to string according to enums <see cref="DisplayAttribute"/>
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
         public static string GetDisplayName(this Enum enumValue)
         {
             return enumValue.GetType()
@@ -16,6 +21,12 @@ namespace FitHubApplication.Services.Extensions
                             .GetName();
         }
 
+        /// <summary>
+        /// Converts a string to enum
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static T ToEnum<T>(this string value)
         {
             try

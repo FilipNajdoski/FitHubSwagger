@@ -84,6 +84,8 @@ namespace FitHubApplication
 
             services.AddTransient<IUploadedFilesService, UploadedFilesService>();
 
+            services.AddTransient<IUploadedFilesRepository, UploadedFilesRepository>();
+
             services.AddControllers();
         }
 
