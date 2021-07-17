@@ -1,6 +1,7 @@
 ﻿using FitHubApplication.Helpers;
 using FitHubApplication.Models.Constants;
 using FitHubApplication.Services;
+using FitHubApplication.Services.Exceptions;
 using FitHubApplication.Services.Extensions;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,8 @@ namespace FitHubApplication.Controllers
             fileSystemPath.CreateDirectory();
 
             IFormFile file = Request.Form.Files.GetFile(ApplicationConsts.UploadFileConsts.FileRequesForm);
+
+            ExceptionHelper.NullCheck<IFormFile>(file, ApplicationConsts.ExceptionMessages.FileWasNull);
 
             string fileName = Path.GetFileName(file.FileName);
 

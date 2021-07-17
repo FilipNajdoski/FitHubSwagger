@@ -99,6 +99,8 @@ namespace FitHubApplication.Models.Constants
             public const string LoginFailed = "Login Failed!";
 
             public const string StingIsEmpty = "String is empty";
+
+            public const string FileWasNull = "File not uploaded";
         }
 
         /// <summary>
