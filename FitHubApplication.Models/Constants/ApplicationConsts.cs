@@ -101,6 +101,10 @@ namespace FitHubApplication.Models.Constants
             public const string StingIsEmpty = "String is empty";
 
             public const string FileWasNull = "File not uploaded";
+
+            public const string GroupIsNull = "Group not found. Maybe it`s deleted";
+
+            public const string InputIsNull = "Input is null";
         }
 
         /// <summary>

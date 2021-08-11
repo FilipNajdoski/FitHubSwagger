@@ -5,7 +5,7 @@ namespace FitHubApplication.Services.Exceptions
     public static class ExceptionHelper
     {
         /// <summary>
-        /// If <see cref="T"/> in null throws exception
+        /// If <see cref="T"/> is null throws exception
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>

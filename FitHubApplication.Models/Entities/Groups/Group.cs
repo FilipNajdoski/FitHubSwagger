@@ -13,6 +13,6 @@ namespace FitHubApplication.Models.Entities
 
         public Enums.Level Level { get; set; }
 
-        public ICollection<User> Trainees { get; set; }
+        public ICollection<GroupTrainee> GroupTrainees { get; set; }
     }
 }

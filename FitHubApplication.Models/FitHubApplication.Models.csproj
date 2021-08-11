@@ -9,6 +9,14 @@
     <Compile Remove="Migrations\20210716211644_AddedExcercisesGroupsAndEvents.Designer.cs" />
     <Compile Remove="Migrations\20210716212256_AddedExcercisesGroupsAndEvents.cs" />
     <Compile Remove="Migrations\20210716212256_AddedExcercisesGroupsAndEvents.Designer.cs" />
+    <Compile Remove="Migrations\20210810144712_AddedGroupTrainees.cs" />
+    <Compile Remove="Migrations\20210810144712_AddedGroupTrainees.Designer.cs" />
+    <Compile Remove="Migrations\20210810144825_AddedGroupTrainees.cs" />
+    <Compile Remove="Migrations\20210810144825_AddedGroupTrainees.Designer.cs" />
+    <Compile Remove="Migrations\20210810144912_AddedGroupTrainees.cs" />
+    <Compile Remove="Migrations\20210810144912_AddedGroupTrainees.Designer.cs" />
+    <Compile Remove="Migrations\20210810144939_AddedGroupTrainees.cs" />
+    <Compile Remove="Migrations\20210810144939_AddedGroupTrainees.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
