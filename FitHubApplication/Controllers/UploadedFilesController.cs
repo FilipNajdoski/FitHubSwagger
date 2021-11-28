@@ -48,7 +48,7 @@ namespace FitHubApplication.Controllers
 
             FileInfo fileInfo = new FileInfo(fileName);
 
-            string newFileName = fileInfo.Name.Replace(fileInfo.Extension, ApplicationConsts.UploadFileConsts.Underscore) + DateTime.Now.ToFileTimeUtc() + fileInfo.Extension;
+            string newFileName = string.Concat(fileInfo.Name.Replace(fileInfo.Extension, ApplicationConsts.UploadFileConsts.Underscore), DateTime.Now.ToFileTimeUtc(), fileInfo.Extension);
 
             using (FileStream stream = new FileStream(Path.Combine(fileSystemPath, newFileName), FileMode.Create))
             {

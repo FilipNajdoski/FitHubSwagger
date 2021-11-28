@@ -6,6 +6,8 @@ using FitHubApplication.Models.Entities;
 using FitHubApplication.Models.Utilities;
 using FitHubApplication.Repositories;
 using FitHubApplication.Services;
+using FitHubApplication.Services.ClaimFactory;
+using FitHubApplication.Services.TokenFactory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -95,6 +97,14 @@ namespace FitHubApplication
             services.AddTransient<IEventRepository, EventRepository>();
 
             services.AddTransient<IEventService, EventService>();
+
+            services.AddTransient<IExcerciseRepository, ExcerciseRepository>();
+
+            services.AddTransient<IExerciseService, ExerciseService>();
+
+            services.AddTransient<ITokenFactory, TokenFactory>();
+
+            services.AddTransient<IClaimFactory, ClaimFactory>();
 
             services.AddControllers();
         }

@@ -1,17 +1,13 @@
 ﻿using FitHubApplication.Models;
 using FitHubApplication.Models.Constants;
 using FitHubApplication.Models.Entities;
-using FitHubApplication.Models.Utilities;
 using FitHubApplication.Services;
+using FitHubApplication.Services.ClaimFactory;
 using FitHubApplication.Services.Exceptions;
+using FitHubApplication.Services.TokenFactory;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FitHubApplication.Controllers
@@ -23,13 +19,21 @@ namespace FitHubApplication.Controllers
     {
         private readonly IAuthenticationService authenticationService;
         private readonly IUserService userService;
-        private readonly JwtSettings jwtSettings;
+        private readonly ITokenFactory tokenFactory;
+        private readonly IClaimFactory claimFactory;
 
-        public AuthController(IAuthenticationService authenticationService, IUserService  userService, JwtSettings jwtSettings)
+        public AuthController
+            (
+            IAuthenticationService authenticationService, 
+            IUserService  userService, 
+            ITokenFactory tokenFactory,
+            IClaimFactory claimFactory
+            )
         {
             this.authenticationService = authenticationService;
             this.userService = userService;
-            this.jwtSettings = jwtSettings;
+            this.tokenFactory = tokenFactory;
+            this.claimFactory = claimFactory;
         }
 
         /// <summary>
@@ -47,7 +51,7 @@ namespace FitHubApplication.Controllers
 
             ExceptionHelper.LoginFailed(signInResult.Succeeded, ApplicationConsts.ExceptionMessages.LoginFailed);
 
-            CreateJwtToken(CreateUserClaims(user), out JwtSecurityToken jwtSecurityToken, out string accessToken);
+            tokenFactory.CreateAccessToken(claimFactory.CreateUserClaims(user), out JwtSecurityToken jwtSecurityToken, out string accessToken);
 
             AuthenticationModel authenticationModel = new AuthenticationModel
             {
@@ -57,31 +61,6 @@ namespace FitHubApplication.Controllers
             };
 
             return Ok(authenticationModel);
-        }
-
-        private void CreateJwtToken(List<Claim> claims,  out JwtSecurityToken jwtSecurityToken, out string accessToken)
-        {
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecurityKey));
-
-            jwtSecurityToken = new JwtSecurityToken(
-                issuer: jwtSettings.Issuer,
-                audience: jwtSettings.Audience,
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256)
-                );
-
-            accessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        }
-
-        private static List<Claim> CreateUserClaims(User user)
-        {
-            return new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            };
         }
 
         /// <summary>

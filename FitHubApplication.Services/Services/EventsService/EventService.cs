@@ -48,12 +48,12 @@ namespace FitHubApplication.Services
 
         public async Task Delete(int eventId)
         {
-            Event @event = new Event
+            Event entity = new Event
             {
                 Id = eventId,
             };
 
-            await eventRepository.Delete(@event);
+            await eventRepository.Delete(entity);
         }
     }
 }
